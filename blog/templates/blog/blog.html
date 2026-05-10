@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="custom-container">
+    <div class="home-layout">
+
+        <!-- LEFT: Posts -->
+        <div class="posts-container">
+            {% for post in posts %}
+            <div class="post-card">
+                <a href="#" class="post-link">{{ post.title }}</a>
+                <div class="post-meta">
+                    <span class="author">{{ post.author }}</span>
+                    <span class="dot">·</span>
+                    <span class="date">{{ post.Date|date:"M d, Y" }}</span>
+                </div>
+                <p class="post-preview">{{ post.content|truncatewords:30 }}</p>
+            <div class="post-meta">
+                ❤️{{ post.total_likes }} likes
+            </div>
+                <a href="{% url "blog-detail" post.pk %}" class="btn-read-more">Read More →</a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- RIGHT: Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-card">
+                <h3>About</h3>
+                <p>A blog about technology, AI, Python and future.</p>
+            </div>
+            <div class="sidebar-card">
+                <h3>Topics</h3>
+                <div class="tags">
+                    <span>Python</span>
+                    <span>Django</span>
+                    <span>AI/ML</span>
+                    <span>FastAPI</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

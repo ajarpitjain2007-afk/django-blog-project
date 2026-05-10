@@ -1,0 +1,107 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+ 
+{% block title %}Register - MyBlog{% endblock %}
+ 
+{% block content %}
+
+<div class="auth-wrap">
+    <div class="auth-box">
+ 
+        <!-- Brand -->
+        <div class="auth-brand">My<span>Blog</span></div>
+        <div class="auth-subtitle">Create your account. Start writing today.</div>
+ 
+        <!-- Progress bar -->
+        <div class="progress-bar-wrap">
+            <div class="progress-step done"></div>
+            <div class="progress-step done"></div>
+            <div class="progress-step"></div>
+        </div>
+ 
+        <!-- Form -->
+        <form method="POST">
+            {% csrf_token %}
+ 
+            <!-- Username -->
+            <div class="field-wrap">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       placeholder="ahmed123"
+                       value="{{ form.username.value|default:'' }}"
+                       required>
+                {% if form.username.errors %}
+                    <ul class="error-list">
+                        {% for error in form.username.errors %}
+                            <li>❌ {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+ 
+            <!-- Email -->
+            <div class="field-wrap">
+                <label class="form-label">Email Address</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       placeholder="ahmed@email.com"
+                       value="{{ form.email.value|default:'' }}"
+                       required>
+                {% if form.email.errors %}
+                    <ul class="error-list">
+                        {% for error in form.email.errors %}
+                            <li>❌ {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+ 
+            <!-- Password -->
+            <div class="field-wrap">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password1"
+                       class="form-control"
+                       placeholder="••••••••"
+                       required>
+                {% if form.password1.errors %}
+                    <ul class="error-list">
+                        {% for error in form.password1.errors %}
+                            <li>❌ {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+ 
+            <!-- Confirm Password -->
+            <div class="field-wrap">
+                <label class="form-label">Confirm Password</label>
+                <input type="password"
+                       name="password2"
+                       class="form-control"
+                       placeholder="••••••••"
+                       required>
+                {% if form.password2.errors %}
+                    <ul class="error-list">
+                        {% for error in form.password2.errors %}
+                            <li>❌ {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+ 
+            <!-- Submit -->
+            <button type="submit" class="btn-register">Create Account →</button>
+        </form>
+ 
+        <div class="auth-footer" style="margin-top: 20px;">
+            Already have an account? <a href="#">Sign in here</a>
+        </div>
+ 
+    </div>
+</div>
+ 
+{% endblock %}

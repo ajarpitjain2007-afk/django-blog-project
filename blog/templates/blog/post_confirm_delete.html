@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Delete Post - MyBlog{% endblock %}
+
+{% block content %}
+
+<div class="auth-wrap">
+    <div class="auth-box" style="max-width: 420px; text-align: center;">
+
+        <div style="font-size: 3rem; margin-bottom: 16px;">🗑️</div>
+
+        <div class="auth-brand">Delete <span>Post?</span></div>
+        <div class="auth-subtitle">This action cannot be undone.</div>
+
+        <!-- Post title preview -->
+        <div style="background: #f7f4ef; border: 1px solid #e0dbd2; 
+                    border-radius: 8px; padding: 14px; margin: 20px 0;
+                    font-size: 0.9rem; color: #444;">
+            "{{ object.title }}"
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn-login" 
+                    style="background: #dc3545;">
+                Yes, Delete
+            </button>
+        </form>
+
+        <div class="auth-footer" style="margin-top: 16px;">
+            Changed your mind? 
+            <a href="{% url 'blog-detail' object.pk %}">Go back</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

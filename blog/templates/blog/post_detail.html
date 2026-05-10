@@ -1,0 +1,129 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+<div class="detail-layout">
+    <article class="post-detail-card">
+
+        <h1 class="detail-title">{{ object.title }}</h1>
+
+        <div class="detail-meta">
+            <strong>{{ object.author }}</strong> · 
+            {{ object.date_posted|date:"F d, Y" }}
+            &nbsp;·&nbsp;
+            ❤️ {{ object.total_likes }} likes
+        </div>
+
+        <div class="detail-content">
+            {{ object.content|safe }}
+        </div>
+
+        <div class="post-actions">
+            <form id="like-form" method="POST" action="{% url 'blog-like' object.pk %}" style="display:inline;">
+                {% csrf_token %}
+                <button id="like-btn" class="btn"
+                    style="background: {% if request.user in object.likes.all %}#c8392b{% else %}#555{% endif %}">
+                    ❤️ <span id="like-text">
+                        {% if request.user in object.likes.all %}Unlike{% else %}Like{% endif %}
+                    </span>
+                    · <span id="like-count">{{ object.total_likes }}</span>
+                </button>
+            </form>
+
+            {% if object.author == user %}
+                <a href="{% url 'blog-update' object.id %}" class="btn edit">Edit</a>
+                <a href="{% url 'blog-delete' object.id %}" class="btn delete">Delete</a>
+            {% endif %}
+
+            <a href="{% url 'blog-home' %}" class="btn back">← Back</a>
+        </div>
+
+        <div style="margin-top: 40px; border-top: 1px solid #f0ede8; padding-top: 28px;">
+
+    <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 20px;">
+        💬 Comments ({{ object.comment_set.count }})
+    </h4>
+
+    <!-- Show comments -->
+    {% for comment in object.comment_set.all %}
+    <div class="comment-card">
+        <div class="comment-meta">
+            <strong>{{ comment.author }}</strong>
+            <span>· {{ comment.date|date:"M d, Y" }}</span>
+        </div>
+        <p class="comment-content">{{ comment.content }}</p>
+    </div>
+    {% empty %}
+    <p style="color: #888; font-size: 0.85rem;">No comments yet. Be the first!</p>
+    {% endfor %}
+
+    <!-- Comment form -->
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'blog-comment' object.pk %}" style="margin-top: 24px;">
+        {% csrf_token %}
+        <textarea name="content"
+                  class="form-control"
+                  placeholder="Write a comment..."
+                  rows="3"
+                  style="margin-bottom: 10px;"
+                  required></textarea>
+        <button type="submit" class="btn back">Post Comment</button>
+    </form>
+    {% else %}
+    <p style="color: #888; font-size: 0.85rem; margin-top: 16px;">
+        <a href="{% url 'login' %}" style="color: #c8392b;">Login</a> to comment.
+    </p>
+    {% endif %}
+
+</div>
+
+       
+       
+        
+
+    </article>
+</div>
+
+<script>
+
+document.getElementById('like-btn').addEventListener('click', function(e) {
+
+    e.preventDefault();
+
+    fetch("{% url 'blog-like' object.pk %}", {
+
+        method: 'POST',
+
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}',
+            'Content-Type': 'application/json',
+        },
+
+    })
+
+    .then(res => res.json())
+
+    .then(data => {
+
+        document.getElementById('like-count').textContent = data.total_likes;
+
+        if (data.liked) {
+
+            document.getElementById('like-text').textContent = 'Unlike';
+
+            document.getElementById('like-btn').style.background = '#c8392b';
+
+        } else {
+
+            document.getElementById('like-text').textContent = 'Like';
+
+            document.getElementById('like-btn').style.background = '#555';
+        }
+
+    });
+
+});
+
+
+
+</script>
+{% endblock %}

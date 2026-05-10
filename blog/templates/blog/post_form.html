@@ -1,0 +1,80 @@
+{% extends 'blog/base.html' %}
+
+
+
+
+{% block title %}
+    {% if object %}Update Post{% else %}New Post{% endif %} - MyBlog
+{% endblock %}
+{% block content %}
+
+<div class="detail-layout">
+    <div class="post-detail-card">
+
+        <h2 style="font-size: 1.6rem; font-weight: 900; margin-bottom: 6px; color: #0e0e0e;">
+            {% if object %}
+                ✏️ Update Post
+            {% else %}
+                📝 New Post
+            {% endif %}
+        </h2>
+        <p style="color: #888; font-size: 0.85rem; margin-bottom: 28px;">
+            {% if object %}
+                Edit your post below.
+            {% else %}
+                Share your thoughts with the world.
+            {% endif %}
+        </p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div class="field-wrap">
+                <label class="form-label">Title</label>
+                <input type="text"
+                       name="title"
+                       class="form-control"
+                       placeholder="Enter post title..."
+                       value="{{ form.title.value|default:'' }}"
+                       required>
+                {% if form.title.errors %}
+                    <ul class="error-list">
+                        {% for error in form.title.errors %}
+                            <li>❌ {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+            <!-- Content -->
+            <div class="field-wrap">
+    <label class="form-label">Content</label>
+
+    {{ form.content }}
+
+    {% if form.content.errors %}
+        <ul class="error-list">
+            {% for error in form.content.errors %}
+                <li>❌ {{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+            <!-- Buttons -->
+            <div class="post-actions" style="border-top: none; padding-top: 0; margin-top: 0;">
+                <button type="submit" class="btn-login" style="width: auto; padding: 10px 28px;">
+                    {% if object %}Update Post{% else %}Publish Post{% endif %} →
+                </button>
+                <a href="{% url 'blog-home' %}" class="btn back">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Profile - MyBlog{% endblock %}
+
+{% block content %}
+
+<div class="detail-layout">
+    <div class="post-detail-card">
+
+        <!-- Profile Header -->
+        <div style="display:flex; align-items:center; gap:24px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid #f0ede8;">
+            
+            <!-- Profile Picture -->
+            <img src="{{ user.profile.image.url }}"
+                 alt="profile"
+                 style="width:90px; height:90px; border-radius:50%; object-fit:cover; border:3px solid #c8392b;">
+
+            <!-- User Info -->
+            <div>
+                <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:4px;">{{ user.username }}</h2>
+                <p style="color:#888; font-size:0.85rem;">{{ user.email }}</p>
+                <p style="color:#c8392b; font-size:0.85rem; font-weight:600; margin-top:6px;">
+                    📝 {{ user.post_set.count }} Posts
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Update Form -->
+        <h4 style="font-size:1rem; font-weight:700; margin-bottom:20px; text-transform:uppercase; letter-spacing:1px; color:#444;">
+            Update Profile
+        </h4>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="field-wrap">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       value="{{ user.username }}"
+                       required>
+            </div>
+
+            <!-- Email -->
+            <div class="field-wrap">
+                <label class="form-label">Email</label>
+                <input type="email"
+                       name="email"
+                       class="form-control"
+                       value="{{ user.email }}">
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="field-wrap">
+                <label class="form-label">Profile Picture</label>
+                <input type="file"
+                       name="image"
+                       class="form-control"
+                       accept="image/*">
+                <small style="color:#888; font-size:0.75rem; margin-top:4px; display:block;">
+                    Current: {{ user.profile.image }}
+                </small>
+            </div>
+
+            <button type="submit" class="btn-login">
+                Update Profile →
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

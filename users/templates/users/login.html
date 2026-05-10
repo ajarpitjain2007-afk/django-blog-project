@@ -1,0 +1,53 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Login - MyBlog{% endblock %}
+
+{% block content %}
+
+<div class="auth-wrap">
+    <div class="auth-box">
+
+        <div class="auth-brand">My<span>Blog</span></div>
+        <div class="auth-subtitle">Welcome back. Sign in to continue.</div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="field-wrap">
+                <label class="form-label">Username</label>
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       placeholder="Enter your username"
+                       required>
+            </div>
+
+            <div class="field-wrap">
+                <label class="form-label">Password</label>
+                <input type="password"
+                       name="password"
+                       class="form-control"
+                       placeholder="••••••••"
+                       required>
+            </div>
+
+            {% if form.errors %}
+                <ul class="error-list">
+                    <li>❌ Username or password is incorrect.</li>
+                </ul>
+            {% endif %}
+
+            <button type="submit" class="btn-login">Sign In →</button>
+        </form>
+
+        <div class="auth-footer" style="margin-top: 20px;">
+            Forgot password? <a href="#">Reset via email</a>
+        </div>
+        <div class="auth-footer">
+            No account? <a href="{% url 'register' %}">Register here</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
