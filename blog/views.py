@@ -6,6 +6,7 @@ from .models import Post , Comment
 from django.http import HttpResponseRedirect
 from django.urls import reverse 
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 
 from django.shortcuts import get_object_or_404
 
@@ -42,7 +43,8 @@ class PostListView(ListView):
     model = Post
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
-    rdering = ['-date_posted']
+    ordering = ['-Date']
+    paginate_by = 7
 
 class PostDetailView(DetailView):
     model = Post

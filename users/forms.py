@@ -13,7 +13,7 @@ class UserRegisterForm(UserCreationForm):
 class UserUpdateForm(forms.ModelForm):
      class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'email'] ### i have to change this email field 
 
 
 
@@ -21,4 +21,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['image','bio']

@@ -97,6 +97,26 @@
     </div>
 </main>
 
+{% if page_obj.has_previous or page_obj.has_next %}
+<div class="pagination-wrap">
+
+    {% if page_obj.has_previous %}
+        <a href="?page=1" class="page-item page-link">« First</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="page-item page-link">Previous</a>
+    {% endif %}
+
+    <span class="page-item page-link" 
+          style="background: #0e0e0e; color: white; border-color: #0e0e0e;">
+        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+    </span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-item page-link">Next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="page-item page-link">Last »</a>
+    {% endif %}
+
+</div>
+{% endif %}
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
     <div class="container">

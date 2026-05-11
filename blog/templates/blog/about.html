@@ -1,12 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>This page is all about </h1>
-    
-</body>
-</html>
+{% extends 'blog/base.html' %}
+
+{% block title %}About - MyBlog{% endblock %}
+
+{% block content %}
+
+<div class="detail-layout">
+
+    <div class="post-detail-card">
+
+        <!-- Hero Section -->
+        <div style="text-align:center; padding-bottom:32px; border-bottom:1px solid #f0ede8; margin-bottom:36px;">
+
+            <h1 style="font-size:2.4rem; font-weight:800; margin-bottom:14px; color:#222;">
+                Welcome to MyBlog 🚀
+            </h1>
+
+            <p style="max-width:700px; margin:auto; color:#666; line-height:1.9; font-size:1rem;">
+                A modern blogging platform built using Django where developers, creators,
+                and learners can share ideas, write stories, explore technology,
+                and grow together through knowledge.
+            </p>
+
+        </div>
+
+        <!-- Mission -->
+        <div style="margin-bottom:38px;">
+
+            <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:14px; color:#c8392b;">
+                🚀 Our Mission
+            </h2>
+
+            <p style="color:#555; line-height:1.9; font-size:0.96rem;">
+                MyBlog was created with a simple mission:
+                to build a clean, powerful, and user-friendly platform where people can
+                express ideas freely and connect through learning.
+            </p>
+
+            <p style="color:#555; line-height:1.9; font-size:0.96rem; margin-top:12px;">
+                Whether you're into programming, AI, design, productivity,
+                gaming, or personal experiences — your voice matters here.
+            </p>
+
+        </div>
+
+        <!-- Features -->
+        <div style="margin-bottom:38px;">
+
+            <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:16px; color:#c8392b;">
+                ✨ Platform Features
+            </h2>
+
+            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;">
+
+                <div style="padding:18px; border:1px solid #f0ede8; border-radius:14px;">
+                    <h4 style="margin-bottom:8px;">📝 Blog Posts</h4>
+                    <p style="color:#666; font-size:0.9rem; line-height:1.7;">
+                        Create, edit, and manage powerful blog content easily.
+                    </p>
+                </div>
+
+                <div style="padding:18px; border:1px solid #f0ede8; border-radius:14px;">
+                    <h4 style="margin-bottom:8px;">❤️ Like System</h4>
+                    <p style="color:#666; font-size:0.9rem; line-height:1.7;">
+                        Engage with posts and support creators through likes.
+                    </p>
+                </div>
+
+                <div style="padding:18px; border:1px solid #f0ede8; border-radius:14px;">
+                    <h4 style="margin-bottom:8px;">💬 Comments</h4>
+                    <p style="color:#666; font-size:0.9rem; line-height:1.7;">
+                        Discuss ideas and interact with the community.
+                    </p>
+                </div>
+
+                <div style="padding:18px; border:1px solid #f0ede8; border-radius:14px;">
+                    <h4 style="margin-bottom:8px;">👤 User Profiles</h4>
+                    <p style="color:#666; font-size:0.9rem; line-height:1.7;">
+                        Customize your profile with bio and profile picture.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Technology -->
+        <div style="margin-bottom:38px;">
+
+            <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:14px; color:#c8392b;">
+                ⚙️ Built With
+            </h2>
+
+            <div style="display:flex; flex-wrap:wrap; gap:10px;">
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">Python</span>
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">Django</span>
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">HTML</span>
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">CSS</span>
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">Bootstrap</span>
+
+                <span style="padding:8px 14px; background:#f7f3ef; border-radius:999px; font-size:0.88rem;">Git & GitHub</span>
+
+            </div>
+
+        </div>
+
+        <!-- Future Plans -->
+        <div style="margin-bottom:38px;">
+
+            <h2 style="font-size:1.2rem; font-weight:700; margin-bottom:14px; color:#c8392b;">
+                🔮 Future Plans
+            </h2>
+
+            <ul style="padding-left:18px; color:#555; line-height:2; font-size:0.95rem;">
+
+                <li>AI-powered blog recommendations</li>
+                <li>Advanced search system</li>
+                <li>Bookmarks & favorites</li>
+                <li>Dark mode support</li>
+                <li>Real-time notifications</li>
+                <li>AI blog assistant integration</li>
+
+            </ul>
+
+        </div>
+
+        <!-- Footer Message -->
+        <div style="text-align:center; margin-top:30px; padding-top:24px; border-top:1px solid #f0ede8;">
+
+            <p style="color:#777; font-size:0.95rem; line-height:1.8;">
+                Built with passion for learning, development, and creativity 💻🔥
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
