@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Profile - MyBlog{% endblock %}
+
+{% block content %}
+
+
+<div class="detail-layout">
+    <div class="post-detail-card">
+
+        <div style="display:flex; align-items:flex-start; gap:24px; margin-bottom:32px; padding-bottom:24px; border-bottom:1px solid #f0ede8;">
+                
+                <!-- Profile Picture -->
+                <img src="{{ usr.profile.image.url }}"
+                    alt="profile"
+                    style="width:90px; height:90px; border-radius:50%; object-fit:cover; border:3px solid #c8392b;">
+
+                <!-- User Info -->
+                <div style="flex:1;">
+                    
+                    <h2 style="font-size:1.5rem; font-weight:700; margin-bottom:4px;">
+                        {{ usr.username }}
+                    </h2>
+
+                    <p style="color:#888; font-size:0.85rem;">
+                        {{ usr.email }}
+                    </p>
+
+                    <!-- Bio Display -->
+                    <div style="margin-top:10px;">
+
+                        <p style="color:#555; font-size:0.9rem; line-height:1.5;" id="bio-text">
+                            {{ usr.profile.bio|default:"No bio added yet." }}
+                        </p>
+
+                        <p style="color:#c8392b; font-size:0.85rem; font-weight:600; margin-top:12px;">
+                        📝 {{ usr.post_set.count }} Posts
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endblock %}

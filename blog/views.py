@@ -1,5 +1,6 @@
 from django.shortcuts import render , redirect
 from .models import Post
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin ,UserPassesTestMixin
 from django.views.generic import ListView , DetailView , CreateView , UpdateView , DeleteView
 from .models import Post , Comment
@@ -138,3 +139,10 @@ def add_comment(request,pk):
 
            
     
+def ProfileView(request , id):
+     if request.user.id == id:
+         return render(request,"users/profile.html")
+     else:
+        #  ph = User.objects.filter(post__isnull=False).distinct()
+         usr = User.objects.get(id=id)
+         return render(request,"blog/ProfileView.html", {"usr":usr})

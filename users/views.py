@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserUpdateForm, ProfileUpdateForm
 
+
 # Create your views here.
 
 def register(request):
@@ -40,6 +41,12 @@ def Profile(request):
         'u_form': u_form,
         'p_form': p_form
     })
+
+
+
+
+         
+    
     
     
 
